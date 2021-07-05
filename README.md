@@ -9,8 +9,11 @@ To test various floating point packages available for the RC2014 and other z88dk
 # usage
 
 ```sh
+    zcc +rc2014 -subtype=cpm -clib=new -v -m -O2 -lm -DPRINTF @planets.lst -o planetnew_cpm -create-app
+
     zcc +rc2014 -subtype=cpm -v -m --list -lm -DPRINTF -Ca-D__MATH_MATH48 @planets.lst -o planet48_cpm -create-app
     zcc +rc2014 -subtype=cpm -v -m --list --math32 -DPRINTF @planets.lst -o planet32_cpm -create-app
+
     zcc +rc2014 -subtype=cpm -v -m --list --am9511 -DPRINTF @planets.lst -o planetapu_cpm -create-app
     zcc +rc2014 -subtype=cpm -v -m --list --am9511 -DPRINTF @planetsmapu.lst -o planetmapu_cpm -create-app
 ```
@@ -28,13 +31,13 @@ To test various floating point packages available for the RC2014 and other z88dk
 
 Based on the work of [Paul Schlyter](http://www.stjarnhimlen.se/english.php).
 
-[How to compute planetary postitions](http://www.stjarnhimlen.se/comp/ppcomp.html).
-[Tutorial on computing planetary positions](http://www.stjarnhimlen.se/comp/tutorial.html).
+ - [How to compute planetary postitions](http://www.stjarnhimlen.se/comp/ppcomp.html).
+ - [Tutorial on computing planetary positions](http://www.stjarnhimlen.se/comp/tutorial.html).
 
 And the implementations of [Cosine Kitty (Don Cross)](http://cosinekitty.com/)
 
-[Solar System Calculator](https://cosinekitty.com/solar_system.html).
-[Astronomy Sky View](http://cosinekitty.com/sky_view.html).
+ - [Solar System Calculator](https://cosinekitty.com/solar_system.html).
+ - [Astronomy Sky View](http://cosinekitty.com/sky_view.html).
 
 # licence
 
