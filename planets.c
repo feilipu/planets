@@ -49,7 +49,7 @@ planet_t moon =     { "Moon", \
                     125.1228, -0.0529538083, \
                     5.1454, 0.0, \
                     318.0634, 0.1643573223, \
-                    60.2666*METERS_PER_EARTH_EQUATORIAL_RADIUS/METERS_PER_ASTRONOMICAL_UNIT, 0.0, \
+                    60.2666/EARTH_RADII_PER_ASTRONOMICAL_UNIT, 0.0, \
                     0.054900, 0.0, \
                     115.3654, 13.0649929509 };
 

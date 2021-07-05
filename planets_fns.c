@@ -16,6 +16,10 @@ void addCartesianCoordinates ( cartesian_coordinates_t * base, cartesian_coordin
 float rev(float x) __z88dk_fastcall;
 #endif
 
+#ifndef __MATH_MATH32
+#define sqr(x) ((x)*(x))
+#endif
+
 
 void sunEclipticCartesianCoordinates ( cartesian_coordinates_t * sun) __z88dk_fastcall
 {
@@ -29,13 +33,13 @@ void sunEclipticCartesianCoordinates ( cartesian_coordinates_t * sun) __z88dk_fa
     // These formulas use 'd' based on days since 1/Jan/2000 12:00 UTC ("J2000.0"), instead of 0/Jan/2000 0:00 UTC ("day value").
     // Correct by subtracting 1.5 days...
     float T = (sun->day - 1.5) * 0.0000273785;                      // 36525.0 Julian centuries since J2000.0
-    float L0 = 280.46645 + (36000.76983 * T) + (0.0003032 * T*T); // Sun's mean longitude, in degrees
-    float M0 = 357.52910 + (35999.05030 * T) - (0.0001559 * T*T) - (0.00000048 * T*T*T);  // Sun's mean anomaly, in degrees
+    float L0 = rev(280.46645 + (36000.76983 * T) + (0.0003032 * sqr(T))); // Sun's mean longitude, in degrees
+    float M0 = rev(357.52910 + (35999.05030 * T) - (0.0001559 * sqr(T)) - (0.00000048 * T * sqr(T)));   // Sun's mean anomaly, in degrees
 
                                                                     // Sun's equation of center in degrees
-    float C = (1.914600 - 0.004817 * T - 0.000014 * T*T) * sin(rad(M0)) + (0.01993 - 0.000101 * T) * sin(rad(2*M0)) + 0.000290 * sin(rad(3*M0));
+    float C = rev((1.914600 - 0.004817 * T - 0.000014 * T * T) * sin(rad(M0)) + (0.01993 - 0.000101 * T) * sin(rad(2*M0)) + 0.000290 * sin(rad(3*M0)));
 
-    float LS = L0 + C;                                              // true ecliptical longitude of Sun
+    float LS = rev(L0 + C);                                         // true ecliptical longitude of Sun
 
     float e = 0.016708617 - T * (0.000042037 + T * 0.0000001236);   // The eccentricity of the Earth's orbit.
     float distanceInAU = (1.000001018 * (1 - e*e)) / (1 + e * cos(rad(M0 + C))); // distance from Sun to Earth in astronomical units (AU)
@@ -57,7 +61,7 @@ void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, pl
     float e = rev( planet->e0 + (day * planet->ec) );
     float M = rev( planet->M0 + (day * planet->Mc) );
 
-    float E = eccentricAnomaly (e, M);
+    float E = rev(eccentricAnomaly (e, M));
 
     // Calculate the body's position in its own orbital plane, and its distance from the thing it is orbiting.
     float xv = a * (cos(rad(E)) - e);
