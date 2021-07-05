@@ -10,6 +10,8 @@
 
 SECTION code_user
 
+IF __SDCC
+
 PUBLIC _rev
 
 IF __MATH_AM9511
@@ -90,6 +92,8 @@ EXTERN _floor_fastcall
     push hl
     call ___fssub_callee   ; x - floor(1/360.0 * x) * (360.0)
     ret
+
+ENDIF
 
 ENDIF
 

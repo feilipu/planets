@@ -2,6 +2,8 @@
 
     build with:
 
+    zcc +rc2014 -subtype=cpm -clib=new -v -m -O2 -lm -DPRINTF @planets.lst -o planetnew_cpm -create-app
+
     zcc +rc2014 -subtype=cpm -v -m --list -lm -DPRINTF -Ca-D__MATH_MATH48 @planets.lst -o planet48_cpm -create-app
     zcc +rc2014 -subtype=cpm -v -m --list --math32 -DPRINTF @planets.lst -o planet32_cpm -create-app
     zcc +rc2014 -subtype=cpm -v -m --list --am9511 -DPRINTF @planets.lst -o planetapu_cpm -create-app
@@ -34,7 +36,6 @@ extern void sunEclipticCartesianCoordinates ( cartesian_coordinates_t * sun ) __
 extern void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, planet_t * planet ) __z88dk_callee;
 extern float eccentricAnomaly (float e, float M) __z88dk_callee;
 extern void addCartesianCoordinates ( cartesian_coordinates_t * base, cartesian_coordinates_t * addend ) __z88dk_callee;
-
 
 planet_t sun =      { "Sun", \
                     0.0, 0.0, \

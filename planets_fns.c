@@ -12,6 +12,11 @@ float eccentricAnomaly (float e, float M) __z88dk_callee;
 
 void addCartesianCoordinates ( cartesian_coordinates_t * base, cartesian_coordinates_t * addend ) __z88dk_callee;
 
+#ifdef __SCCZ80
+float rev(float x) __z88dk_fastcall;
+#endif
+
+
 void sunEclipticCartesianCoordinates ( cartesian_coordinates_t * sun) __z88dk_fastcall
 {
     // We use formulas for finding the Sun as seen from Earth, 
@@ -98,4 +103,11 @@ void addCartesianCoordinates ( cartesian_coordinates_t * base, cartesian_coordin
     base->y += addend->y;
     base->z += addend->z;
 }
+
+#ifdef __SCCZ80
+float rev (float x) __z88dk_fastcall
+{
+    return x - floor(x*(1/360.0))*360.0;
+}
+#endif
 

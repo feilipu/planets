@@ -34,5 +34,5 @@ typedef struct planet_s {   // See  http://www.stjarnhimlen.se/comp/ppcomp.html#
 
 // utility functions (assembly)
 
-extern float rev(float x) __z88dk_fastcall;
+extern float rev (float x) __z88dk_fastcall;
 
