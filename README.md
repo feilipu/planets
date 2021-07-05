@@ -24,6 +24,18 @@ To test various floating point packages available for the RC2014 and other z88dk
  - am9511      17.2 seconds
  - am9511 4x   12.5 seconds
 
+# credits
+
+Based on the work of [Paul Schlyter](http://www.stjarnhimlen.se/english.php).
+
+[How to compute planetary postitions](http://www.stjarnhimlen.se/comp/ppcomp.html).
+[Tutorial on computing planetary positions](http://www.stjarnhimlen.se/comp/tutorial.html).
+
+And the implementations of [Cosine Kitty (Don Cross)](http://cosinekitty.com/)
+
+[Solar System Calculator](https://cosinekitty.com/solar_system.html).
+[Astronomy Sky View](http://cosinekitty.com/sky_view.html).
+
 # licence
 
 MIT License
