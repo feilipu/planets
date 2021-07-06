@@ -10,8 +10,6 @@
 
 SECTION code_user
 
-IF __SDCC
-
 IF __MATH_AM9511
 
 EXTERN asm_am9511_fmul_callee
@@ -63,41 +61,6 @@ PUBLIC _rev
     call m32_fsmul_callee   ; (360.0) * floor(1/360.0 * x)
     call m32_fssub_callee   ; x - (360.0) * floor(1/360.0 * x)
     ret
-
-ENDIF
-
-IF __MATH_MATH48
-
-EXTERN ___fsmul_callee
-EXTERN ___fssub_callee
-EXTERN _floor_fastcall
-
-PUBLIC _rev
-
-._rev
-    push de                 ; x
-    push hl
-    push de                 ; x
-    push hl
-    ld bc,0x3b36            ; (1/360.0)
-    push bc
-    ld bc,0x0b61
-    push bc
-    call ___fsmul_callee    ; (x * 1/360.0)
-    call _floor_fastcall
-    push de                 ; floor(x * 1/360.0)
-    push hl
-    ld bc,0x43b4            ; (360.0)
-    push bc
-    ld bc,0x0000
-    push bc
-    call ___fsmul_callee    ; floor(1/360.0 * x) * (360.0)
-    push de
-    push hl
-    call ___fssub_callee   ; x - floor(1/360.0 * x) * (360.0)
-    ret
-
-ENDIF
 
 ENDIF
 

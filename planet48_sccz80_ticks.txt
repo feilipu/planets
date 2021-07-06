@@ -1,4 +1,4 @@
-$ z88dk-ticks planet48_ticks.bin -counter 99999999999
+$ z88dk-ticks planet48_sccz80_ticks.bin -counter 99999999999
 
 Geocentric Coordinates
 
@@ -446,3 +446,4 @@ Solar Day 7864.750
 End
 
 Ticks: 967403452
+
