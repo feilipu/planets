@@ -9,11 +9,14 @@ To test various floating point packages available for the RC2014 and other z88dk
 # usage
 
 ```sh
-    zcc +rc2014 -subtype=cpm -clib=new -v -m -O2 -lm -DPRINTF @planets.lst -o planetnew_cpm -create-app
+    zcc +test -v -m -O2 --list -lm -DPRINTF @planets.lst -o planet_ticks.bin
 
-    zcc +rc2014 -subtype=cpm -v -m --list -lm -DPRINTF -Ca-D__MATH_MATH48 @planets.lst -o planet48_cpm -create-app
+    zcc +test -v -m -O2 --list -lmath48 -DPRINTF @planets.lst -o planet48_sccz80_ticks.bin
+    zcc +test -compiler=sdcc -v -m -SO3 --list -lmath48 -DPRINTF @planets.lst -o planet48_sdcc_ticks.bin
+
+    zcc +rc2014 -subtype=cpm -clib=new -v -m -O2 --list -lm -DPRINTF @planets.lst -o planetnew_cpm -create-app
+    zcc +rc2014 -subtype=cpm -v -m --list -lm -DPRINTF @planets.lst -o planet48_cpm -create-app
     zcc +rc2014 -subtype=cpm -v -m --list --math32 -DPRINTF @planets.lst -o planet32_cpm -create-app
-
     zcc +rc2014 -subtype=cpm -v -m --list --am9511 -DPRINTF @planets.lst -o planetapu_cpm -create-app
     zcc +rc2014 -subtype=cpm -v -m --list --am9511 -DPRINTF @planetsmapu.lst -o planetmapu_cpm -create-app
 ```
