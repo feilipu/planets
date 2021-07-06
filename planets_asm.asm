@@ -12,13 +12,13 @@ SECTION code_user
 
 IF __SDCC
 
-PUBLIC _rev
-
 IF __MATH_AM9511
 
 EXTERN asm_am9511_fmul_callee
 EXTERN asm_am9511_fsub_callee
 EXTERN asm_am9511_floor_fastcall
+
+PUBLIC _rev
 
 ._rev
     push de                         ; x
@@ -45,6 +45,8 @@ EXTERN m32_fsmul_callee
 EXTERN m32_fssub_callee
 EXTERN m32_floor_fastcall
 
+PUBLIC _rev
+
 ._rev
     push de                 ; x
     push hl
@@ -69,6 +71,8 @@ IF __MATH_MATH48
 EXTERN ___fsmul_callee
 EXTERN ___fssub_callee
 EXTERN _floor_fastcall
+
+PUBLIC _rev
 
 ._rev
     push de                 ; x

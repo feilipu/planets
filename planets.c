@@ -2,8 +2,10 @@
 
     build with:
 
-    zcc +test -v -m -O2 --list -lm -DPRINTF @planets.lst -o planetticks.bin
-    zcc +test -v -m -O2 --list --math32 -DPRINTF @planets.lst -o planet32ticks.bin
+    zcc +test -v -m -O2 --list -lm -DPRINTF @planets.lst -o planet_ticks.bin
+
+    zcc +test -v -m -O2 --list -lmath48 -DPRINTF @planets.lst -o planet48_ticks.bin
+    zcc +test -compiler=sdcc -v -m -O2 --list -lmath48 -DPRINTF -Ca-D__MATH_MATH48 @planets.lst -o planet48_ticks.bin
 
     zcc +rc2014 -subtype=cpm -clib=new -v -m -O2 --list -lm -DPRINTF @planets.lst -o planetnew_cpm -create-app
 
