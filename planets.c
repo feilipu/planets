@@ -10,7 +10,6 @@
     zcc +rc2014 -subtype=cpm -clib=new -v -m -O2 --list -lm -DPRINTF @planets.lst -o planetnew_cpm -create-app
     zcc +rc2014 -subtype=cpm -v -m --list -lm -DPRINTF @planets.lst -o planet48_cpm -create-app
     zcc +rc2014 -subtype=cpm -v -m --list --math32 -DPRINTF @planets.lst -o planet32_cpm -create-app
-    zcc +rc2014 -subtype=cpm -clib=new -v -m --list --math32 --math16 -DPRINTF @planets.lst -o planet16_cpm -create-app
     zcc +rc2014 -subtype=cpm -v -m --list --am9511 -DPRINTF @planets.lst -o planetapu_cpm -create-app
     zcc +rc2014 -subtype=cpm -v -m --list --am9511 -DPRINTF @planetsmapu.lst -o planetmapu_cpm -create-app
 */
@@ -23,6 +22,7 @@
  *  am9511 4x   12.5 seconds
  */
 
+#include <stdint.h>
 #include <stdio.h>
 #include <math.h>
 

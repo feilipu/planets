@@ -1,11 +1,8 @@
 
+#include <stdint.h>
 #include <math.h>
 
 #include "planets.h"
-
-#if ! defined(__MATH_MATH32) && ! defined(__MATH_AM9511)
-FLOAT rev(FLOAT x) __z88dk_fastcall;
-#endif
 
 void sunEclipticCartesianCoordinates ( cartesian_coordinates_t * sun) __z88dk_fastcall
 {
@@ -94,7 +91,7 @@ void addCartesianCoordinates ( cartesian_coordinates_t * base, cartesian_coordin
     base->z += addend->z;
 }
 
-#if ! defined(__MATH_MATH32) && ! defined(__MATH_AM9511) && ! defined(__MATH_MATH16)
+#if ! defined(__MATH_MATH32) && ! defined(__MATH_AM9511)
 FLOAT rev (FLOAT x) __z88dk_fastcall
 {
     return x - floor(x*(1/360.0))*360.0;

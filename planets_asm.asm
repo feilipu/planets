@@ -64,26 +64,5 @@ PUBLIC _rev
 
 ENDIF
 
-IF __MATH_MATH16
-
-EXTERN asm_f16_mul_callee
-EXTERN asm_f16_sub_callee
-EXTERN asm_f16_floor
-
-PUBLIC _rev
-
-._rev
-    push hl                 ; x
-    push hl
-    ld hl,6576              ; (1/360.0)
-    call asm_f16_mul_callee ; (x * 1/360.0)
-    call asm_f16_floor
-    push hl
-    ld hl,23968             ; (360.0)
-    call asm_f16_mul_callee ; floor(x * 1/360.0) * (360.0)
-    jp asm_f16_sub_callee   ; x - floor(x * 1/360.0) * (360.0)
-
-ENDIF
-
 ;==============================================================================
 

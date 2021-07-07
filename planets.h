@@ -10,33 +10,20 @@
 #define RAD(x)      ((x)*(M_PI/180.0))
 #define DEG(x)      ((x)*(180.0/M_PI))
 
-#ifdef __MATH_MATH16
-    #define FLOAT half_t
-    #define FABS  fabsf16
-    #define COS   cosf16
-    #define SIN   sinf16
-    #define TAN   tanf16
-    #define ACOS  acosf16
-    #define ASIN  asinf16
-    #define ATAN  atanf16
-    #define ATAN2 atan2f16
-    #define SQRT  sqrtf16
-    #define HYPOT hypotf16
-#else
-    #define FLOAT float_t
-    #define FABS  fabs
-    #define COS   cos
-    #define SIN   sin
-    #define TAN   tan
-    #define ACOS  acos
-    #define ASIN  asin
-    #define ATAN  atan
-    #define ATAN2 atan2
-    #define SQRT  sqrt
-    #define HYPOT hypot
-#endif
+#define FLOAT float_t
+#define FABS  fabs
+#define COS   cos
+#define SIN   sin
+#define TAN   tan
+#define ACOS  acos
+#define ASIN  asin
+#define ATAN  atan
+#define ATAN2 atan2
+#define SQRT  sqrt
+#define HYPOT hypot
 
-#if defined(__MATH_MATH32) && ! defined(__MATH_MATH16)
+
+#if defined(__MATH_MATH32)
     #define SQR(x) sqr(x)
 #else
     #define SQR(x) ((x)*(x))
@@ -65,14 +52,14 @@ typedef struct planet_s {   // See  http://www.stjarnhimlen.se/comp/ppcomp.html#
     FLOAT M0, Mc;           // M0 = mean anomaly (deg) (0 at perihelion; increases uniformly with time).  Mc ("mean motion") = rate of change in deg/day = 360/period.
 } planet_t;
 
-// utility functions
+// utility functions (C)
 
 void sunEclipticCartesianCoordinates ( cartesian_coordinates_t * sun ) __z88dk_fastcall;
 void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, planet_t * planet ) __z88dk_callee;
 FLOAT eccentricAnomaly (FLOAT e, FLOAT M) __z88dk_callee;
 void addCartesianCoordinates ( cartesian_coordinates_t * base, cartesian_coordinates_t * addend ) __z88dk_callee;
 
-// utility functions (assembly)
+// utility functions (C or assembly)
 
 FLOAT rev (FLOAT x) __z88dk_fastcall;
 
