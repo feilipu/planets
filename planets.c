@@ -10,6 +10,7 @@
     zcc +rc2014 -subtype=cpm -clib=new -v -m -O2 --list -lm -DPRINTF @planets.lst -o planetnew_cpm -create-app
     zcc +rc2014 -subtype=cpm -v -m --list -lm -DPRINTF @planets.lst -o planet48_cpm -create-app
     zcc +rc2014 -subtype=cpm -v -m --list --math32 -DPRINTF @planets.lst -o planet32_cpm -create-app
+    zcc +rc2014 -subtype=cpm -clib=new -v -m --list --math32 --math16 -DPRINTF @planets.lst -o planet16_cpm -create-app
     zcc +rc2014 -subtype=cpm -v -m --list --am9511 -DPRINTF @planets.lst -o planetapu_cpm -create-app
     zcc +rc2014 -subtype=cpm -v -m --list --am9511 -DPRINTF @planetsmapu.lst -o planetmapu_cpm -create-app
 */
@@ -33,13 +34,6 @@
 #else
    #define FPRINTF(a,b,c,d,e)
 #endif
-
-#pragma printf = "%10s %c %i %.3f"     // enables %s, %c, %i, %f only
-
-extern void sunEclipticCartesianCoordinates ( cartesian_coordinates_t * sun ) __z88dk_fastcall;
-extern void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, planet_t * planet ) __z88dk_callee;
-extern float eccentricAnomaly (float e, float M) __z88dk_callee;
-extern void addCartesianCoordinates ( cartesian_coordinates_t * base, cartesian_coordinates_t * addend ) __z88dk_callee;
 
 planet_t sun =      { "Sun", \
                     0.0, 0.0, \
@@ -117,50 +111,50 @@ planet_t neptune =  { "Neptune", \
 
 int main()
 {
-    float d;
+    FLOAT d;
     cartesian_coordinates_t theSun, thePlanet;
 
     printf("\nGeocentric Coordinates\n\n");
 
     for (d = 7855.0; d < 7865.0; d+= 0.25)
     {
-        printf("Solar Day %.3f\n", d);
+        printf("Solar Day %.3f\n", (float)d);
 
         theSun.day = d;
         sunEclipticCartesianCoordinates ( &theSun);
-        FPRINTF("%10s x %10.6f y %10.6f z %10.6f\n", sun.name, theSun.x, theSun.y, theSun.z);
+        FPRINTF("%10s x %10.6f y %10.6f z %10.6f\n", sun.name, (float)theSun.x, (float)theSun.y, (float)theSun.z);
 
         thePlanet.day = d;
         planetEclipticCartesianCoordinates( &thePlanet, &moon );
-        FPRINTF("%10s x %10.6f y %10.6f z %10.6f\n", moon.name, thePlanet.x, thePlanet.y, thePlanet.z);
+        FPRINTF("%10s x %10.6f y %10.6f z %10.6f\n", moon.name, (float)thePlanet.x, (float)thePlanet.y, (float)thePlanet.z);
 
         planetEclipticCartesianCoordinates( &thePlanet, &mercury );
         addCartesianCoordinates( &thePlanet, &theSun );
-        FPRINTF("%10s x %10.6f y %10.6f z %10.6f\n", mercury.name, thePlanet.x, thePlanet.y, thePlanet.z);
+        FPRINTF("%10s x %10.6f y %10.6f z %10.6f\n", mercury.name, (float)thePlanet.x, (float)thePlanet.y, (float)thePlanet.z);
 
         planetEclipticCartesianCoordinates( &thePlanet, &venus );
         addCartesianCoordinates( &thePlanet, &theSun );
-        FPRINTF("%10s x %10.6f y %10.6f z %10.6f\n", venus.name, thePlanet.x, thePlanet.y, thePlanet.z);
+        FPRINTF("%10s x %10.6f y %10.6f z %10.6f\n", venus.name, (float)thePlanet.x, (float)thePlanet.y, (float)thePlanet.z);
 
         planetEclipticCartesianCoordinates( &thePlanet, &mars );
         addCartesianCoordinates( &thePlanet, &theSun );
-        FPRINTF("%10s x %10.6f y %10.6f z %10.6f\n", mars.name, thePlanet.x, thePlanet.y, thePlanet.z);
+        FPRINTF("%10s x %10.6f y %10.6f z %10.6f\n", mars.name, (float)thePlanet.x, (float)thePlanet.y, (float)thePlanet.z);
 
         planetEclipticCartesianCoordinates( &thePlanet, &jupiter );
         addCartesianCoordinates( &thePlanet, &theSun );
-        FPRINTF("%10s x %10.6f y %10.6f z %10.6f\n", jupiter.name, thePlanet.x, thePlanet.y, thePlanet.z);
+        FPRINTF("%10s x %10.6f y %10.6f z %10.6f\n", jupiter.name, (float)thePlanet.x, (float)thePlanet.y, (float)thePlanet.z);
 
         planetEclipticCartesianCoordinates( &thePlanet, &saturn );
         addCartesianCoordinates( &thePlanet, &theSun );
-        FPRINTF("%10s x %10.6f y %10.6f z %10.6f\n", saturn.name, thePlanet.x, thePlanet.y, thePlanet.z);
+        FPRINTF("%10s x %10.6f y %10.6f z %10.6f\n", saturn.name, (float)thePlanet.x, (float)thePlanet.y, (float)thePlanet.z);
 
         planetEclipticCartesianCoordinates( &thePlanet, &uranus );
         addCartesianCoordinates( &thePlanet, &theSun );
-        FPRINTF("%10s x %10.6f y %10.6f z %10.6f\n", uranus.name, thePlanet.x, thePlanet.y, thePlanet.z);
+        FPRINTF("%10s x %10.6f y %10.6f z %10.6f\n", uranus.name, (float)thePlanet.x, (float)thePlanet.y, (float)thePlanet.z);
 
         planetEclipticCartesianCoordinates( &thePlanet, &neptune );
         addCartesianCoordinates( &thePlanet, &theSun );
-        FPRINTF("%10s x %10.6f y %10.6f z %10.6f\n\n", neptune.name, thePlanet.x, thePlanet.y, thePlanet.z);
+        FPRINTF("%10s x %10.6f y %10.6f z %10.6f\n\n", neptune.name, (float)thePlanet.x, (float)thePlanet.y, (float)thePlanet.z);
     }
     printf("\nEnd\n");
     return 0;

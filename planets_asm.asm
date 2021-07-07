@@ -37,7 +37,7 @@ PUBLIC _rev
 
 ENDIF
 
-IF __MATH_MATH32
+IF __MATH_MATH32 & ! __MATH_MATH16
 
 EXTERN m32_fsmul_callee
 EXTERN m32_fssub_callee
@@ -61,6 +61,27 @@ PUBLIC _rev
     call m32_fsmul_callee   ; (360.0) * floor(1/360.0 * x)
     call m32_fssub_callee   ; x - (360.0) * floor(1/360.0 * x)
     ret
+
+ENDIF
+
+IF __MATH_MATH16
+
+EXTERN asm_f16_mul_callee
+EXTERN asm_f16_sub_callee
+EXTERN asm_f16_floor
+
+PUBLIC _rev
+
+._rev
+    push hl                 ; x
+    push hl
+    ld hl,6576              ; (1/360.0)
+    call asm_f16_mul_callee ; (x * 1/360.0)
+    call asm_f16_floor
+    push hl
+    ld hl,23968             ; (360.0)
+    call asm_f16_mul_callee ; floor(x * 1/360.0) * (360.0)
+    jp asm_f16_sub_callee   ; x - floor(x * 1/360.0) * (360.0)
 
 ENDIF
 
