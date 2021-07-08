@@ -9,7 +9,7 @@ void sunEclipticCartesianCoordinates ( cartesian_coordinates_t * sun ) __z88dk_f
 
 void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, planet_t * planet ) __z88dk_callee;
 
-float eccentricAnomaly (float e, float M ) __z88dk_callee;
+FLOAT eccentricAnomaly (FLOAT e, FLOAT M ) __z88dk_callee;
 
 void addCartesianCoordinates ( cartesian_coordinates_t * base, cartesian_coordinates_t * addend ) __z88dk_callee;
 
@@ -25,17 +25,17 @@ void sunEclipticCartesianCoordinates ( cartesian_coordinates_t * sun) __z88dk_fa
 
     // These formulas use 'd' based on days since 1/Jan/2000 12:00 UTC ("J2000.0"), instead of 0/Jan/2000 0:00 UTC ("day value").
     // Correct by subtracting 1.5 days...
-    float T = (sun->day - 1.5) * 0.0000273785;                      // 36525.0 Julian centuries since J2000.0
-    float L0 = rev(280.46645 + (36000.76983 * T) + (0.0003032 * sqr(T))); // Sun's mean longitude, in degrees
-    float M0 = rev(357.52910 + (35999.05030 * T) - (0.0001559 * sqr(T)) - (0.00000048 * T * sqr(T)));   // Sun's mean anomaly, in degrees
+    FLOAT T = (sun->day - 1.5) * 0.0000273785;                      // 36525.0 Julian centuries since J2000.0
+    FLOAT L0 = rev(280.46645 + (36000.76983 * T) + (0.0003032 * SQR(T))); // Sun's mean longitude, in degrees
+    FLOAT M0 = rev(357.52910 + (35999.05030 * T) - (0.0001559 * SQR(T)) - (0.00000048 * T * SQR(T)));   // Sun's mean anomaly, in degrees
 
                                                                     // Sun's equation of center in degrees
-    float C = rev((1.914600 - 0.004817 * T - 0.000014 * T * T) * sin(rad(M0)) + (0.01993 - 0.000101 * T) * sin(rad(2*M0)) + 0.000290 * sin(rad(3*M0)));
+    FLOAT C = rev((1.914600 - 0.004817 * T - 0.000014 * T * T) * SIN(RAD(M0)) + (0.01993 - 0.000101 * T) * SIN(RAD(2*M0)) + 0.000290 * SIN(RAD(3*M0)));
 
-    float LS = rev(L0 + C);                                         // true ecliptical longitude of Sun
+    FLOAT LS = rev(L0 + C);                                         // true ecliptical longitude of Sun
 
-    float e = 0.016708617 - T * (0.000042037 + T * 0.0000001236);   // The eccentricity of the Earth's orbit.
-    float distanceInAU = (1.000001018 * (1 - sqr(e))) / (1 + e * cos(rad(M0 + C))); // distance from Sun to Earth in astronomical units (AU)
+    FLOAT e = 0.016708617 - T * (0.000042037 + T * 0.0000001236);   // The eccentricity of the Earth's orbit.
+    FLOAT distanceInAU = (1.000001018 * (1 - SQR(e))) / (1 + e * COS(RAD(M0 + C))); // distance from Sun to Earth in astronomical units (AU)
 
     rad_0(LS);
     rad_1(LS);
@@ -52,7 +52,7 @@ void sunEclipticCartesianCoordinates ( cartesian_coordinates_t * sun) __z88dk_fa
 
 void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, planet_t * planet ) __z88dk_callee
 {
-    float day = location->day;
+    FLOAT day = location->day;
 
     push_0(day);
     push_1(day);
@@ -69,10 +69,10 @@ void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, pl
     add_2(planet->e0);
     add_3(planet->M0);
 
-    float N = pop_0();
-    float i = pop_1();
-    float e = pop_2();
-    float M = pop_3();
+    FLOAT N = pop_0();
+    FLOAT i = pop_1();
+    FLOAT e = pop_2();
+    FLOAT M = pop_3();
 
     push_2(day);
     push_3(day);
@@ -85,8 +85,8 @@ void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, pl
     add_2(planet->w0);
     add_3(planet->a0);
 
-    float w = pop_2();
-    float a = pop_3();
+    FLOAT w = pop_2();
+    FLOAT a = pop_3();
 
     rad_2(N);
     rad_3(N);
@@ -100,16 +100,16 @@ void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, pl
     cos_0();
     sin_1();
 
-    float cosN = pop_2();
-    float sinN = pop_3();
+    FLOAT cosN = pop_2();
+    FLOAT sinN = pop_3();
 
-    float cosi = pop_0();
-    float sini = pop_1();
+    FLOAT cosi = pop_0();
+    FLOAT sini = pop_1();
 
     e = rev( e );
     M = rev( M );
 
-    float E = eccentricAnomaly (e, M);
+    FLOAT E = eccentricAnomaly (e, M);
 
     // Calculate the body's position in its own orbital plane, and its distance from the thing it is orbiting
     rad_2(E);
@@ -117,25 +117,25 @@ void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, pl
     cos_2();
     sin_3();
 
-    mul_3( sqrt(1.0 - sqr(e)) );        // use 0 for math while 2 & 3 are doing trigonometry
+    mul_3( SQRT(1.0 - SQR(e)) );        // use 0 for math while 2 & 3 are doing trigonometry
     add_2( -e );
     mul_3( a );
     mul_2( a );
 
-    float yv = pop_3();
-    float xv = pop_2();
+    FLOAT yv = pop_3();
+    FLOAT xv = pop_2();
 
-    float v = deg(atan2(yv, xv));       // True anomaly in degrees: the angle from perihelion of the body as seen by the Sun
+    FLOAT v = DEG(ATAN2(yv, xv));       // True anomaly in degrees: the angle from perihelion of the body as seen by the Sun
 
     rad_2(v+w);
     rad_3(v+w);
     cos_2();
     sin_3();
 
-    float r = hypot(xv, yv);            // Distance from the Sun to the planet in AU.
+    FLOAT r = HYPOT(xv, yv);            // Distance from the Sun to the planet in AU.
 
-    float cosVW = pop_2();
-    float sinVW = pop_3();
+    FLOAT cosVW = pop_2();
+    FLOAT sinVW = pop_3();
 
     // Now we are ready to calculate (unperturbed) ecliptic cartesian heliocentric coordinates
     push_0(cosN); 
@@ -148,8 +148,8 @@ void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, pl
     mul_2(sinVW);
     mul_3(sinVW);
 
-    float cosNcosVW = pop_0();
-    float sinNcosVW = pop_1();
+    FLOAT cosNcosVW = pop_0();
+    FLOAT sinNcosVW = pop_1();
 
     push_1(sinVW);
 
@@ -171,16 +171,16 @@ void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, pl
 }
 
 
-float eccentricAnomaly (float e, float M) __z88dk_callee
+FLOAT eccentricAnomaly (FLOAT e, FLOAT M) __z88dk_callee
 {
-    float E, F;
-    float error;
+    FLOAT E, F;
+    FLOAT error;
 
-    E = M + (e * sin(rad(M)) * (1.0 + (e * cos(rad(M)))));
+    E = M + (e * SIN(RAD(M)) * (1.0 + (e * COS(RAD(M)))));
 
     do {
-        F = E - (E - deg(e * sin(rad(E))) - M) / (1 - e * cos(rad(E)));
-        error = fabs(F - E);
+        F = E - (E - DEG(e * SIN(RAD(E))) - M) / (1 - e * COS(RAD(E)));
+        error = FABS(F - E);
         E = F;
 
     } while (error >= 1.0e-4);          // the angle is good enough for our purposes
