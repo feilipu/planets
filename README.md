@@ -9,10 +9,14 @@ To test various floating point packages available for the RC2014 and other z88dk
 # usage
 
 ```sh
-    zcc +test -v -m -O2 --list -lm -DPRINTF @planets.lst -o planet_ticks.bin
-
+    zcc +test -v -m -O2 --list -lm -DPRINTF @planets.lst -o planetgm_sccz80_ticks.bin
     zcc +test -v -m -O2 --list -lmath48 -DPRINTF @planets.lst -o planet48_sccz80_ticks.bin
+    zcc +test -v -m -O2 --list --math32 -DPRINTF @planets.lst -o planet32_sccz80_ticks.bin
+
     zcc +test -compiler=sdcc -v -m -SO3 --list -lmath48 -DPRINTF @planets.lst -o planet48_sdcc_ticks.bin
+    zcc +test -compiler=sdcc -v -m -SO3 --list --math32 -DPRINTF @planets.lst -o planet32_sdcc_ticks.bin
+
+    z88dk-ticks -counter 99999999999 planetxx_x_ticks.bin
 
     zcc +rc2014 -subtype=cpm -clib=new -v -m -O2 --list -lm -DPRINTF @planets.lst -o planetnew_cpm -create-app
     zcc +rc2014 -subtype=cpm -v -m --list -lm -DPRINTF @planets.lst -o planet48_cpm -create-app
@@ -24,11 +28,24 @@ To test various floating point packages available for the RC2014 and other z88dk
 # results
 
 40 calculations for 9 bodies on RC2014 (CPM-IDE) with reduced printing (`-DPRINTF` not defined).
+```
+ -  sccz80/new/math48       105.5 seconds
+ -  sdcc/new/math48         101.4 seconds
+ -  sdcc/new/math32          34.3 seconds
 
- - math48     103.1 seconds
- - math32      34.4 seconds
- - am9511      17.2 seconds
- - am9511 4x   12.5 seconds
+ -  sdcc/new/am9511          17.1 seconds
+ -  sdcc/new/am9511 4x       12.5 seconds
+```
+
+40 calculations for 9 bodies on z88dk-ticks - no printing (`-DPRINTF` not defined, no other `printf()`).
+```
+ -  sccz80/classic/genmath  Ticks: 967407074
+ -  sccz80/new/math48       Ticks: 769092327
+ -  sccz80/new/math32       Ticks: 244838986
+
+ -  sdcc/new/math48         Ticks: 735740571
+ -  sdcc/new/math32         Ticks: 245127879
+```
 
 # credits
 
