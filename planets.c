@@ -30,6 +30,7 @@
  *  sdcc/new/math32         Ticks: 245127879
  *
  *  40 calculations for 9 bodies on RC2014 (CPM-IDE) - reduced printing.
+ *
  *  sccz80/new/math48       105.5 seconds
  *  sdcc/new/math48         101.4 seconds
  *  sdcc/new/math32          34.3 seconds
