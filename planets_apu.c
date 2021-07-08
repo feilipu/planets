@@ -28,10 +28,9 @@ void sunEclipticCartesianCoordinates ( cartesian_coordinates_t * sun) __z88dk_fa
     FLOAT T = (sun->day - 1.5) * 0.0000273785;                      // 36525.0 Julian centuries since J2000.0
     
     FLOAT T_SQR = SQR(T);
-    FLOAT T_CUB = T_SQR*T;
 
     FLOAT L0 = rev(280.46645 + (36000.76983 * T) + (0.0003032 * T_SQR));                            // Sun's mean longitude, in degrees
-    FLOAT M0 = rev(357.52910 + (35999.05030 * T) - (0.0001559 * T_SQR) - (0.00000048 * T_CUB));     // Sun's mean anomaly, in degrees
+    FLOAT M0 = rev(357.52910 + (35999.05030 * T) - (0.0001559 * T_SQR) - (0.00000048 * T * T_SQR));     // Sun's mean anomaly, in degrees
 
                                                                     // Sun's equation of center in degrees
     //FLOAT C = rev((1.914600 - 0.004817 * T - 0.000014 * T_SQR) * SIN(RAD(M0)) + (0.01993 - 0.000101 * T) * SIN(RAD(2*M0)) + 0.000290 * SIN(RAD(3*M0)));
