@@ -16,16 +16,20 @@ void sunEclipticCartesianCoordinates ( cartesian_coordinates_t * sun) __z88dk_fa
     // These formulas use 'd' based on days since 1/Jan/2000 12:00 UTC ("J2000.0"), instead of 0/Jan/2000 0:00 UTC ("day value").
     // Correct by subtracting 1.5 days...
     FLOAT T = (sun->day - 1.5) * 0.0000273785;                      // 36525.0 Julian centuries since J2000.0
-    FLOAT L0 = rev(280.46645 + (36000.76983 * T) + (0.0003032 * SQR(T))); // Sun's mean longitude, in degrees
-    FLOAT M0 = rev(357.52910 + (35999.05030 * T) - (0.0001559 * SQR(T)) - (0.00000048 * T * SQR(T)));   // Sun's mean anomaly, in degrees
+
+    FLOAT T_SQR = SQR(T);
+    FLOAT T_CUB = T_SQR*T;
+
+    FLOAT L0 = rev(280.46645 + (36000.76983 * T) + (0.0003032 * T_SQR));                            // Sun's mean longitude, in degrees
+    FLOAT M0 = rev(357.52910 + (35999.05030 * T) - (0.0001559 * T_SQR) - (0.00000048 * T_CUB));     // Sun's mean anomaly, in degrees
 
                                                                     // Sun's equation of center in degrees
-    FLOAT C = rev((1.914600 - 0.004817 * T - 0.000014 * T * T) * SIN(RAD(M0)) + (0.01993 - 0.000101 * T) * SIN(RAD(2*M0)) + 0.000290 * SIN(RAD(3*M0)));
+    FLOAT C = rev((1.914600 - 0.004817 * T - 0.000014 * T_SQR) * SIN(RAD(M0)) + (0.01993 - 0.000101 * T) * SIN(RAD(2*M0)) + 0.000290 * SIN(RAD(3*M0)));
 
     FLOAT LS = rev(L0 + C);                                         // true ecliptical longitude of Sun
 
     FLOAT e = 0.016708617 - T * (0.000042037 + T * 0.0000001236);   // The eccentricity of the Earth's orbit.
-    FLOAT distanceInAU = (1.000001018 * (1 - e*e)) / (1 + e * COS(RAD(M0 + C))); // distance from Sun to Earth in astronomical units (AU)
+    FLOAT distanceInAU = (1.000001018 * (1 - SQR(e)) / (1 + e * COS(RAD(M0 + C))); // distance from Sun to Earth in astronomical units (AU)
     sun->x = distanceInAU * COS(RAD(LS));
     sun->y = distanceInAU * SIN(RAD(LS));
     sun->z = 0.0;                                                   // the Earth's center is always on the plane of the ecliptic (z=0), by definition!

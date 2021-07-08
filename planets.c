@@ -11,7 +11,7 @@
 
     z88dk-ticks -counter 99999999999 planetxx_x_ticks.bin
 
-    zcc +rc2014 -subtype=cpm -clib=new -v -m -O2 --list -lm -DPRINTF --max-allocs-per-node100000 @planets.lst -o planetnew_cpm -create-app
+    zcc +rc2014 -subtype=cpm -clib=new -v -m -O2 --list -lm -DPRINTF @planets.lst -o planetnew_cpm -create-app
     zcc +rc2014 -subtype=cpm -v -m --list  -lm     -DPRINTF --max-allocs-per-node100000 @planets.lst -o planet48_cpm -create-app
     zcc +rc2014 -subtype=cpm -v -m --list --math32 -DPRINTF --max-allocs-per-node100000 @planets.lst -o planet32_cpm -create-app
 
@@ -36,7 +36,7 @@
  *  sdcc/new/math32          34.3 seconds
  *
  *  sdcc/new/am9511          17.1 seconds
- *  sdcc/new/am9511 4x       12.5 seconds
+ *  sdcc/new/am9511 4x        9.1 seconds
  *
  */
 
@@ -132,11 +132,11 @@ int main()
     FLOAT d;
     cartesian_coordinates_t theSun, thePlanet;
 
-//  printf("\nGeocentric Coordinates\n\n");
+    printf("\nGeocentric Coordinates\n\n");
 
     for (d = 7855.0; d < 7865.0; d+= 0.25)
     {
-//      printf("Solar Day %.3f\n", (float)d);
+        printf("Solar Day %.3f\n", (float)d);
 
         theSun.day = d;
         sunEclipticCartesianCoordinates ( &theSun);
@@ -174,7 +174,7 @@ int main()
         addCartesianCoordinates( &thePlanet, &theSun );
         FPRINTF("%10s x %10.6f y %10.6f z %10.6f\n\n", neptune.name, (float)thePlanet.x, (float)thePlanet.y, (float)thePlanet.z);
     }
-//  printf("\nEnd\n");
+    printf("\nEnd\n");
     return 0;
 }
 
