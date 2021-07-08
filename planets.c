@@ -6,8 +6,8 @@
     zcc +test -v -m -O2 --list -lmath48 -DPRINTF @planets.lst -o planet48_sccz80_ticks.bin
     zcc +test -v -m -O2 --list --math32 -DPRINTF @planets.lst -o planet32_sccz80_ticks.bin
 
-    zcc +test -compiler=sdcc -v -m -SO3 --list -lmath48 -DPRINTF --max-allocs-per-node100000 @planets.lst -o planet48_sdcc_ticks.bin
-    zcc +test -compiler=sdcc -v -m -SO3 --list --math32 -DPRINTF --max-allocs-per-node100000 @planets.lst -o planet32_sdcc_ticks.bin
+    zcc +test -compiler=sdcc -v -m -SO3 --list --reserve-regs-iy -lmath48 -DPRINTF --max-allocs-per-node100000 @planets.lst -o planet48_sdcc_ticks.bin
+    zcc +test -compiler=sdcc -v -m -SO3 --list --reserve-regs-iy --math32 -DPRINTF --max-allocs-per-node100000 @planets.lst -o planet32_sdcc_ticks.bin
 
     z88dk-ticks -counter 99999999999 planetxx_x_ticks.bin
 
@@ -26,8 +26,8 @@
  *  sccz80/new/math48       Ticks: 765516204
  *  sccz80/new/math32       Ticks: 243894794
  *
- *  sdcc/new/math48         Ticks: 732970375
- *  sdcc/new/math32         Ticks: 243811206
+ *  sdcc/new/math48         Ticks: 733985135
+ *  sdcc/new/math32         Ticks: 244120776
  *
  *  40 calculations for 9 bodies on RC2014 (CPM-IDE) - reduced printing.
  *
