@@ -48,7 +48,7 @@ void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, pl
 
     // Calculate the body's position in its own orbital plane, and its distance from the thing it is orbiting.
     FLOAT xv = a * (COS(RAD(E)) - e);
-    FLOAT yv = a * SQRT(1.0 - (e*e)) * SIN(RAD(E));
+    FLOAT yv = a * SQRT(1.0 - SQR(e)) * SIN(RAD(E));
 
     FLOAT v = DEG(ATAN2(yv, xv));       // True anomaly in degrees: the angle from perihelion of the body as seen by the Sun.
     FLOAT r = hypot(xv, yv);            // Distance from the Sun to the planet in AU

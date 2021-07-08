@@ -32,10 +32,10 @@ To test various floating point packages available for the RC2014 and other z88dk
 ```
  -  sccz80/classic/genmath  Ticks: 967407074
  -  sccz80/new/math48       Ticks: 769092327
- -  sccz80/new/math32       Ticks: 244838986
+ -  sccz80/new/math32       Ticks: 252826233
 
- -  sdcc/new/math48         Ticks: 735740571
- -  sdcc/new/math32         Ticks: 245127879
+ -  sdcc/new/math48         Ticks: 735457135
+ -  sdcc/new/math32         Ticks: 244811563
 ```
 
 40 calculations for 9 bodies on RC2014 (CPM-IDE) with reduced printing (`-DPRINTF` not defined).

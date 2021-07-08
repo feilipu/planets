@@ -6,17 +6,17 @@
     zcc +test -v -m -O2 --list -lmath48 -DPRINTF @planets.lst -o planet48_sccz80_ticks.bin
     zcc +test -v -m -O2 --list --math32 -DPRINTF @planets.lst -o planet32_sccz80_ticks.bin
 
-    zcc +test -compiler=sdcc -v -m -SO3 --list -lmath48 -DPRINTF @planets.lst -o planet48_sdcc_ticks.bin
-    zcc +test -compiler=sdcc -v -m -SO3 --list --math32 -DPRINTF @planets.lst -o planet32_sdcc_ticks.bin
+    zcc +test -compiler=sdcc -v -m -SO3 --list -lmath48 -DPRINTF --max-allocs-per-node100000 @planets.lst -o planet48_sdcc_ticks.bin
+    zcc +test -compiler=sdcc -v -m -SO3 --list --math32 -DPRINTF --max-allocs-per-node100000 @planets.lst -o planet32_sdcc_ticks.bin
 
     z88dk-ticks -counter 99999999999 planetxx_x_ticks.bin
 
-    zcc +rc2014 -subtype=cpm -clib=new -v -m -O2 --list -lm -DPRINTF @planets.lst -o planetnew_cpm -create-app
-    zcc +rc2014 -subtype=cpm -v -m --list -lm -DPRINTF @planets.lst -o planet48_cpm -create-app
-    zcc +rc2014 -subtype=cpm -v -m --list --math32 -DPRINTF @planets.lst -o planet32_cpm -create-app
+    zcc +rc2014 -subtype=cpm -clib=new -v -m -O2 --list -lm -DPRINTF --max-allocs-per-node100000 @planets.lst -o planetnew_cpm -create-app
+    zcc +rc2014 -subtype=cpm -v -m --list  -lm     -DPRINTF --max-allocs-per-node100000 @planets.lst -o planet48_cpm -create-app
+    zcc +rc2014 -subtype=cpm -v -m --list --math32 -DPRINTF --max-allocs-per-node100000 @planets.lst -o planet32_cpm -create-app
 
-    zcc +rc2014 -subtype=cpm -v -m --list --am9511 -DPRINTF @planets.lst -o planetapu_cpm -create-app
-    zcc +rc2014 -subtype=cpm -v -m --list --am9511 -DPRINTF @planetsmapu.lst -o planetmapu_cpm -create-app
+    zcc +rc2014 -subtype=cpm -v -m --list --am9511 -DPRINTF --max-allocs-per-node100000 @planets.lst -o planetapu_cpm -create-app
+    zcc +rc2014 -subtype=cpm -v -m --list --am9511 -DPRINTF --max-allocs-per-node100000 @planetsmapu.lst -o planetmapu_cpm -create-app
 */
 
 /*
@@ -24,10 +24,10 @@
  *
  *  sccz80/classic/genmath  Ticks: 967407074
  *  sccz80/new/math48       Ticks: 769092327
- *  sccz80/new/math32       Ticks: 244838986
+ *  sccz80/new/math32       Ticks: 252826233
  *
- *  sdcc/new/math48         Ticks: 735740571
- *  sdcc/new/math32         Ticks: 245127879
+ *  sdcc/new/math48         Ticks: 735457135
+ *  sdcc/new/math32         Ticks: 244811563
  *
  *  40 calculations for 9 bodies on RC2014 (CPM-IDE) - reduced printing.
  *
@@ -132,11 +132,11 @@ int main()
     FLOAT d;
     cartesian_coordinates_t theSun, thePlanet;
 
-    printf("\nGeocentric Coordinates\n\n");
+//  printf("\nGeocentric Coordinates\n\n");
 
     for (d = 7855.0; d < 7865.0; d+= 0.25)
     {
-        printf("Solar Day %.3f\n", (float)d);
+//      printf("Solar Day %.3f\n", (float)d);
 
         theSun.day = d;
         sunEclipticCartesianCoordinates ( &theSun);
@@ -174,7 +174,7 @@ int main()
         addCartesianCoordinates( &thePlanet, &theSun );
         FPRINTF("%10s x %10.6f y %10.6f z %10.6f\n\n", neptune.name, (float)thePlanet.x, (float)thePlanet.y, (float)thePlanet.z);
     }
-    printf("\nEnd\n");
+//  printf("\nEnd\n");
     return 0;
 }
 
