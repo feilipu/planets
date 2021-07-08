@@ -37,7 +37,7 @@ PUBLIC _rev
 
 ENDIF
 
-IF __MATH_MATH32 & ! __MATH_MATH16
+IF __MATH_MATH32
 
 EXTERN m32_fsmul_callee
 EXTERN m32_fssub_callee
