@@ -45,7 +45,7 @@ To test various floating point packages available for the RC2014 and other z88dk
  -  sdcc/new/math32          34.3 seconds
 
  -  sdcc/new/am9511          17.1 seconds
- -  sdcc/new/am9511 4x       12.5 seconds
+ -  sdcc/new/am9511 4x        9.1 seconds
 ```
 
 # credits

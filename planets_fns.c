@@ -29,7 +29,7 @@ void sunEclipticCartesianCoordinates ( cartesian_coordinates_t * sun) __z88dk_fa
     FLOAT LS = rev(L0 + C);                                         // true ecliptical longitude of Sun
 
     FLOAT e = 0.016708617 - T * (0.000042037 + T * 0.0000001236);   // The eccentricity of the Earth's orbit.
-    FLOAT distanceInAU = (1.000001018 * (1 - SQR(e)) / (1 + e * COS(RAD(M0 + C))); // distance from Sun to Earth in astronomical units (AU)
+    FLOAT distanceInAU = (1.000001018 * (1 - SQR(e))) / (1 + e * COS(RAD(M0 + C))); // distance from Sun to Earth in astronomical units (AU)
     sun->x = distanceInAU * COS(RAD(LS));
     sun->y = distanceInAU * SIN(RAD(LS));
     sun->z = 0.0;                                                   // the Earth's center is always on the plane of the ecliptic (z=0), by definition!
