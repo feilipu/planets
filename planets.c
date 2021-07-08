@@ -22,12 +22,12 @@
 /*
  *  40 calculations for 9 bodies on z88dk-ticks - no printing.
  *
- *  sccz80/classic/genmath  Ticks: 967407074
- *  sccz80/new/math48       Ticks: 769092327
- *  sccz80/new/math32       Ticks: 252826233
+ *  sccz80/classic/genmath  Ticks: 964795252
+ *  sccz80/new/math48       Ticks: 765516204
+ *  sccz80/new/math32       Ticks: 243894794
  *
- *  sdcc/new/math48         Ticks: 735457135
- *  sdcc/new/math32         Ticks: 244811563
+ *  sdcc/new/math48         Ticks: 732970375
+ *  sdcc/new/math32         Ticks: 243811206
  *
  *  40 calculations for 9 bodies on RC2014 (CPM-IDE) - reduced printing.
  *

@@ -16,7 +16,7 @@ To test various floating point packages available for the RC2014 and other z88dk
     zcc +test -compiler=sdcc -v -m -SO3 --list -lmath48 -DPRINTF @planets.lst -o planet48_sdcc_ticks.bin
     zcc +test -compiler=sdcc -v -m -SO3 --list --math32 -DPRINTF @planets.lst -o planet32_sdcc_ticks.bin
 
-    z88dk-ticks -counter 99999999999 planetxx_x_ticks.bin
+    z88dk-ticks -counter 99999999999 planetxx_xxxx_ticks.bin
 
     zcc +rc2014 -subtype=cpm -clib=new -v -m -O2 --list -lm -DPRINTF @planets.lst -o planetnew_cpm -create-app
     zcc +rc2014 -subtype=cpm -v -m --list -lm -DPRINTF @planets.lst -o planet48_cpm -create-app
@@ -30,12 +30,12 @@ To test various floating point packages available for the RC2014 and other z88dk
 
 40 calculations for 9 bodies on `z88dk-ticks` - no printing (`-DPRINTF` not defined, no other `printf()`).
 ```
- -  sccz80/classic/genmath  Ticks: 967407074
- -  sccz80/new/math48       Ticks: 769092327
- -  sccz80/new/math32       Ticks: 252826233
+ -  sccz80/classic/genmath  Ticks: 964795252
+ -  sccz80/new/math48       Ticks: 765516204
+ -  sccz80/new/math32       Ticks: 243894794
 
- -  sdcc/new/math48         Ticks: 735457135
- -  sdcc/new/math32         Ticks: 244811563
+ -  sdcc/new/math48         Ticks: 732970375
+ -  sdcc/new/math32         Ticks: 243811206
 ```
 
 40 calculations for 9 bodies on RC2014 (CPM-IDE) with reduced printing (`-DPRINTF` not defined).

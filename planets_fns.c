@@ -72,16 +72,14 @@ void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, pl
 
 FLOAT eccentricAnomaly (FLOAT e, FLOAT M) __z88dk_callee
 {
-    FLOAT E, F;
-    FLOAT error;
+    FLOAT E, error;
 
     E = M + (e * SIN(RAD(M)) * (1.0 + (e * COS(RAD(M)))));
 
     do {
-        F = E - (E - DEG(e * SIN(RAD(E))) - M) / (1 - e * COS(RAD(E)));
-        error = FABS(F - E);
-        E = F;
-
+        error = (E - DEG(e * SIN(RAD(E))) - M) / (1 - e * COS(RAD(E)));
+        E -= error;
+        error = FABS(error);
     } while (error >= 1.0e-3);          // the angle is good enough for our purposes
 
     return E;

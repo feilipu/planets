@@ -240,10 +240,6 @@ FLOAT eccentricAnomaly (FLOAT e, FLOAT M) __z88dk_callee
         E -= error;
         error = FABS(error);
 
-        //F = E - (E - DEG(e * SIN(RAD(E))) - M) / (1 - e * COS(RAD(E)));
-        //error = FABS(F - E);
-        //E = F;
-
     } while (error >= 1.0e-3);          // the angle is good enough for our purposes
 
     return E;
