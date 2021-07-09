@@ -35,7 +35,7 @@
  *  sdcc/new/math48         101.4 seconds
  *  sdcc/new/math32          34.3 seconds
  *
- *  sdcc/new/am9511          17.1 seconds
+ *  sdcc/new/am9511          16.9 seconds
  *  sdcc/new/am9511 4x        9.1 seconds
  *
  */
