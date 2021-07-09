@@ -1,18 +1,9 @@
 
+#include <stdint.h>
 #include <math.h>
+
 #include "planets.h"
 #include "multi_apu.h"
-
-// utility functions (C)
-
-void sunEclipticCartesianCoordinates ( cartesian_coordinates_t * sun ) __z88dk_fastcall;
-
-void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, planet_t * planet ) __z88dk_callee;
-
-FLOAT eccentricAnomaly (FLOAT e, FLOAT M ) __z88dk_callee;
-
-void addCartesianCoordinates ( cartesian_coordinates_t * base, cartesian_coordinates_t * addend ) __z88dk_callee;
-
 
 void sunEclipticCartesianCoordinates ( cartesian_coordinates_t * sun) __z88dk_fastcall
 {
