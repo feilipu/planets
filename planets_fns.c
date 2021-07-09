@@ -54,7 +54,7 @@ void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, pl
     FLOAT yv = a * SQRT(1.0 - SQR(e)) * SIN(RAD(E));
 
     FLOAT v = DEG(ATAN2(yv, xv));       // True anomaly in degrees: the angle from perihelion of the body as seen by the Sun.
-    FLOAT r = hypot(xv, yv);            // Distance from the Sun to the planet in AU
+    FLOAT r = HYPOT(xv, yv);            // Distance from the Sun to the planet in AU
 
     FLOAT cosN  = COS(RAD(N));
     FLOAT sinN  = SIN(RAD(N));
@@ -95,7 +95,7 @@ void addCartesianCoordinates ( cartesian_coordinates_t * base, cartesian_coordin
 #if ! defined(__MATH_MATH32) && ! defined(__MATH_AM9511)
 FLOAT rev (FLOAT x) __z88dk_fastcall
 {
-    return x - floor(x*(1/360.0))*360.0;
+    return x - FLOOR(x*(1/360.0))*360.0;
 }
 #endif
 

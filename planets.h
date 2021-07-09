@@ -7,11 +7,14 @@
 
 // macros
 
-#define RAD(x)      ((x)*(M_PI/180.0))
-#define DEG(x)      ((x)*(180.0/M_PI))
-
 #define FLOAT       float_t
+
 #define FABS        fabs
+#define FLOOR       floor
+
+#define SQRT        sqrt
+#define HYPOT       hypot
+
 #define COS         cos
 #define SIN         sin
 #define TAN         tan
@@ -19,15 +22,15 @@
 #define ASIN        asin
 #define ATAN        atan
 #define ATAN2       atan2
-#define SQRT        sqrt
-#define HYPOT       hypot
-
 
 #if defined(__MATH_MATH32)
     #define SQR(x)  sqr(x)
 #else
     #define SQR(x)  ((x)*(x))
 #endif
+
+#define RAD(x)      ((x)*(M_PI/180.0))
+#define DEG(x)      ((x)*(180.0/M_PI))
 
 // pragmas
 

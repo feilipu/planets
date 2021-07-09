@@ -16,7 +16,7 @@
     zcc +rc2014 -subtype=cpm -v -m --list --math32 -DPRINTF --max-allocs-per-node100000 @planets.lst -o planet32_cpm -create-app
 
     zcc +rc2014 -subtype=cpm -v -m --list --am9511 -DPRINTF --max-allocs-per-node100000 @planets.lst -o planetapu_cpm -create-app
-    zcc +rc2014 -subtype=cpm -v -m --list --am9511 -DPRINTF --max-allocs-per-node100000 @planetsmapu.lst -o planetmapu_cpm -create-app
+    zcc +rc2014 -subtype=cpm -v -m --list --am9511 -DPRINTF --max-allocs-per-node100000 @planets_mapu.lst -o planetmapu_cpm -create-app
 */
 
 /*
