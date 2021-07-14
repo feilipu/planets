@@ -35,7 +35,7 @@ void sunEclipticCartesianCoordinates ( cartesian_coordinates_t * sun) __z88dk_fa
 }
 
 
-void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, planet_t * planet ) __z88dk_callee
+void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, const planet_t * planet ) __z88dk_callee
 {
     FLOAT day = location->day;
 

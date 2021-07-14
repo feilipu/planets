@@ -53,12 +53,13 @@ typedef struct planet_s {   // See  http://www.stjarnhimlen.se/comp/ppcomp.html#
     FLOAT a0, ac;           // semi-major axis, or mean distance from Sun (AU).
     FLOAT e0, ec;           // eccentricity (0=circle, 0..1=ellipse, 1=parabola).
     FLOAT M0, Mc;           // M0 = mean anomaly (deg) (0 at perihelion; increases uniformly with time).  Mc ("mean motion") = rate of change in deg/day = 360/period.
+    FLOAT radius;           // radius proportional to earth (earth = 1.0)
 } planet_t;
 
 // utility functions (C)
 
 void sunEclipticCartesianCoordinates ( cartesian_coordinates_t * sun ) __z88dk_fastcall;
-void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, planet_t * planet ) __z88dk_callee;
+void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, const planet_t * planet ) __z88dk_callee;
 FLOAT eccentricAnomaly (FLOAT e, FLOAT M) __z88dk_callee;
 void addCartesianCoordinates ( cartesian_coordinates_t * base, cartesian_coordinates_t * addend ) __z88dk_callee;
 
