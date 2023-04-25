@@ -14,8 +14,10 @@
     zcc +rc2014 -subtype=cpm -clib=new -v -m -O2 --list -lm -DPRINTF @planets.lst -o planetnew_cpm -create-app
     zcc +rc2014 -subtype=cpm -v -m --list  -lm     -DPRINTF --max-allocs-per-node100000 @planets.lst -o planet48_cpm -create-app
     zcc +rc2014 -subtype=cpm -v -m --list --math32 -DPRINTF --max-allocs-per-node100000 @planets.lst -o planet32_cpm -create-app
+    zcc +rc2014 -subtype=basic -v -m --list --math32 -DPRINTF --max-allocs-per-node100000 @planets.lst -o planet32_basic -create-app
 
     zcc +rc2014 -subtype=cpm -v -m --list --am9511 -DPRINTF --max-allocs-per-node100000 @planets.lst -o planetapu_cpm -create-app
+    zcc +rc2014 -subtype=basic -v -m --list --am9511 -DPRINTF --max-allocs-per-node100000 @planets.lst -o planetapu_basic -create-app
     zcc +rc2014 -subtype=cpm -v -m --list --am9511 -DPRINTF --max-allocs-per-node100000 @planets_mapu.lst -o planetmapu_cpm -create-app
 */
 
@@ -136,8 +138,11 @@ const planet_t neptune =  { "Neptune", \
                             (24622/6378) };
 
 
-int main()
+int main(int argc, char ** argv)
 {
+    (void)argc;
+    (void *)argv;
+
     FLOAT d;
     cartesian_coordinates_t theSun, thePlanet;
 
