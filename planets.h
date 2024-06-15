@@ -23,7 +23,7 @@
 #define ATAN        atan
 #define ATAN2       atan2
 
-#if defined(__MATH_MATH32)
+#if defined(__MATH_MATH32) || defined(__MATH_AM9511)
     #define SQR(x)  sqr(x)
 #else
     #define SQR(x)  ((x)*(x))
