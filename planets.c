@@ -1,4 +1,31 @@
 /*
+ * planets.c
+ *
+ * Copyright (c) 2021 Phillip Stevens
+ * Create Time: July 2021
+ *
+ * The MIT License (MIT)
+ *
+ * Permission is hereby granted,free of charge,to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"),to deal
+ * in the Software without restriction,including without limitation the rights
+ * to use,copy,modify,merge,publish,distribute,sublicense,and/or sell
+ * copies of the Software,and to permit persons to whom the Software is
+ * furnished to do so,subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS",WITHOUT WARRANTY OF ANY KIND,EXPRESS OR
+ * IMPLIED,INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,DAMAGES OR OTHER
+ * LIABILITY,WHETHER IN AN ACTION OF CONTRACT,TORT OR OTHERWISE,ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+ 
+/*
 
     build with:
 
@@ -55,6 +82,8 @@
    #define FPRINTF(a,b,c,d,e)
 #endif
 
+// planetary constants
+
 const planet_t sun =      { "Sun", \
                             0.0, 0.0, \
                             0.0, 0.0, \
@@ -72,7 +101,6 @@ const planet_t moon =     { "Moon", \
                             0.054900, 0.0, \
                             115.3654, 13.0649929509, \
                             (1738/6378) };
-
 
 const planet_t mercury =  { "Mercury", \
                             48.3313, 3.24587e-5, \

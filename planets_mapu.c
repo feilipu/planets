@@ -65,7 +65,7 @@ void sunEclipticCartesianCoordinates ( cartesian_coordinates_t * sun) __z88dk_fa
 }
 
 
-void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, planet_t * planet ) __z88dk_callee
+void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, const planet_t * planet ) __z88dk_callee
 {
     FLOAT day = location->day;
 
@@ -237,7 +237,7 @@ FLOAT eccentricAnomaly (FLOAT e, FLOAT M) __z88dk_callee
 }
 
 
-void addCartesianCoordinates ( cartesian_coordinates_t * base, cartesian_coordinates_t * addend ) __z88dk_callee
+void addCartesianCoordinates ( cartesian_coordinates_t * base, const cartesian_coordinates_t * addend ) __z88dk_callee
 {
     push_0(base->x);
     push_1(base->y);

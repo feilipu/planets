@@ -32,6 +32,8 @@ void sunEclipticCartesianCoordinates ( cartesian_coordinates_t * sun) __z88dk_fa
     sun->x = distanceInAU * COS(RAD(LS));
     sun->y = distanceInAU * SIN(RAD(LS));
     sun->z = 0.0;                                                   // the Earth's center is always on the plane of the ecliptic (z=0), by definition!
+
+    sun->au = distanceInAU;
 }
 
 
@@ -67,6 +69,9 @@ void planetEclipticCartesianCoordinates ( cartesian_coordinates_t * location, co
     location->x = r * (cosN*cosVW - sinN*sinVW*cosi);
     location->y = r * (sinN*cosVW + cosN*sinVW*cosi);
     location->z = r * sinVW * sini;
+
+    // save the radius from the sun in AU
+    location->au = r;
 }
 
 
@@ -85,7 +90,7 @@ FLOAT eccentricAnomaly (FLOAT e, FLOAT M) __z88dk_callee
     return E;
 }
 
-void addCartesianCoordinates ( cartesian_coordinates_t * base, cartesian_coordinates_t * addend ) __z88dk_callee
+void addCartesianCoordinates ( cartesian_coordinates_t * base, const cartesian_coordinates_t * addend ) __z88dk_callee
 {
     base->x += addend->x;
     base->y += addend->y;
